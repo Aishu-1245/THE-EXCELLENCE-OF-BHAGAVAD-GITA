@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bhagavad Gita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFF8E1; /* A warm, parchment-like color */
+        }
+        .font-sanskrit {
+            font-family: 'Tiro Devanagari Sanskrit', serif;
+        }
+        /* Hero section with slideshow */
+        .hero-section {
+            position: relative;
+            height: 70vh;
+            color: rgb(231, 216, 216);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 1;
+        }
+        .hero-slide.active {
+            opacity: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 0.75rem;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .accordion-button.active + .accordion-content {
+            max-height: 1500px; /* Adjust as needed */
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #FF9800;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-amber-800/80 backdrop-blur-sm text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">Jai BhagavadGita</h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#intro" class="hover:text-amber-300 transition">Introduction</a>
+                <a href="#chapters" class="hover:text-amber-300 transition">Chapters</a>
+                <a href="#concepts" class="hover:text-amber-300 transition">Key Concepts</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+            <a href="#intro" class="block py-2 px-4 text-sm hover:bg-amber-700/80 rounded">Introduction</a>
+            <a href="#chapters" class="block py-2 px-4 text-sm hover:bg-amber-700/80 rounded">Chapters</a>
+            <a href="#concepts" class="block py-2 px-4 text-sm hover:bg-amber-700/80 rounded">Key Concepts</a>
+            
+        </div>
+    </header>
+
+    <section id="hero" class="hero-section">
+        <div id="hero-slideshow">
+            <div class="hero-slide active" style="background-image: url('kisna%20and%20arjuna.jpg');"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="text-4xl md:text-6xl font-bold">The Excellence of Bhagavad Gita</h1>
+            <h2 class="text-xl md:text-3xl mt-4 italic">Experience the glory of Gita & the existence of God.</h2>
+            
+        </div>
+    </section>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="intro" class="my-12 scroll-mt-20">
+            <h3 class="text-3xl font-bold text-center text-amber-900 mb-6">Introduction</h3>
+            <div class="bg-white/70 p-8 rounded-xl shadow-lg card space-y-6 text-lg leading-relaxed">
+                <h3><b>Why to read Gita?</b></h3><br>
+                    The Bhagavad Gita offers the fundamentals of life. The book describes the excellence of God, the greatness of Dharma and the superiority of Karma. The Gita explains the profound sense of selfless service.
+                    <p>
+                        The great Acharya Shankara Bhagavatpadacharya, the reviver of Sanathana Dharma, spoke about the Bhagavad Gita in his <a href="#" id="stotram-link" class="text-amber-700 font-bold hover:underline">Govinda Stotram</a>. He mentioned that one who sincerely listens to and grasps the wisdom of the Gita, who drunk even a drop of the water of the Ganges, and who worships Krishna wholeheartedly, will be protected from the reach of Yama (the lord of death).
+                    </p>
+                    
+                    <p>
+                        In the Gita, which consists of 18 chapters and 700 verses (shlokas), Lord Krishna explains the nature of reality, covering topics such as:
+                       <p><b>Krishna explains in Gita about</b></p>
+                    <ul class="list-disc list-inside pl-4 space-y-2 bg-amber-50/50 p-4 rounded-lg">
+                        <li>Who is Human?</li>
+                        <li>Who is God?</li>
+                        <li>What is Karma?</li>
+                        <li>What is Kalaswarupam(time)?</li>
+                        <li>What is Nature?</li>
+                    </ul>
+                       <div class="text-center p-4 bg-amber-50/50 rounded-lg">
+                        <h4 class="font-bold text-xl mb-2 text-amber-800">VOICE OF THE GITA</h4>
+                        <p>The 700 shlokas are spoken by four individuals:</p>
+                        <ul class="mt-2">
+                            <li><strong>Lord Krishna:</strong> 574 Shlokas</li>
+                            <li><strong>Arjuna:</strong> 84 Shlokas</li>
+                            <li><strong>Sanjaya:</strong> 41 Shlokas</li>
+                            <li><strong>Dhritarashtra:</strong> 1 Shloka</li>
+                        </ul>
+                    </div>
+                    
+            </div>
+        </section>
+
+        <section id="chapters" class="my-12 scroll-mt-20">
+            <h3 class="text-3xl font-bold text-center text-amber-900 mb-6"> Chapters</h3>
+            <div id="accordion-container" class="space-y-4">
+                </div>
+        </section>
+
+        <section id="concepts" class="my-12 scroll-mt-20">
+            <h3 class="text-3xl font-bold text-center text-amber-900 mb-6">Key Concepts</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white/70 p-6 rounded-xl shadow-lg card">
+                    <h4 class="text-xl font-bold text-amber-800 mb-2">Dharma (Duty)</h4>
+                    <p>The principle of cosmic order and one's righteous duty. Krishna emphasizes performing one's own dharma selflessly.</p>
+                </div>
+                <div class="bg-white/70 p-6 rounded-xl shadow-lg card">
+                    <h4 class="text-xl font-bold text-amber-800 mb-2">Karma (Action)</h4>
+                    <p>The law of cause and effect. The Gita teaches the concept of Nishkama Karma, or action without attachment to the results.</p>
+                </div>
+                <div class="bg-white/70 p-6 rounded-xl shadow-lg card">
+                    <h4 class="text-xl font-bold text-amber-800 mb-2">Moksha (Liberation)</h4>
+                    <p>The ultimate goal of spiritual liberation from the cycle of birth and death (samsara), achieved through wisdom and devotion.</p>
+                </div>
+                <div class="bg-white/70 p-6 rounded-xl shadow-lg card">
+                    <h4 class="text-xl font-bold text-amber-800 mb-2">The Yogas</h4>
+                    <p>The paths to spiritual realization: Bhakti (devotion), Jnana (knowledge), Karma (action), and Dhyana (meditation).</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-amber-900 text-white text-center p-6 mt-12">
+        <p>Dedicating this website to the guidance of <a href="https://youtube.com/playlist?list=PLB7obXUKYYrS_1avmfNqhIRV-BJUPnXOm&si=SjPQSIMQyaQsAJxv">Pranavananda Dasa Prabhuji</a></p>
+    </footer>
+
+    <div id="stotram-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal-button" class="close-button">&times;</span>
+            <h3 class="text-2xl font-bold text-amber-800 mb-4">Bhaja Govindam (Verse 1)</h3>
+            <p class="font-sanskrit text-xl mb-2">భగవద్గీతా కించిదధీతా గంగాజల-లవకణికా పీతా । </p>
+            <p class="font-sanskrit text-xl mb-4">సకృదపి యేన మురారిసమర్చా క్రియతే తస్య యమేన న చర్చా</p>
+            <p class="italic mb-2"><b>Meaning: </b>who has studied even a little of the Bhagavad Gita, drunk even a drop of the water of the Ganges, and worshipped Murari (Krishna) even once, will not have to argue with Yama (the god of death)</p>
+            
+        </div>
+    </div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Data (Updated with Acronyms for all 18 chapters) ---
+        const chapters = [
+            { "id": 1, "name": "Arjuna Visada Yoga", "acronym": "<br><b>D</b>: Dhritrashtra & Duryodhana<br><b>O</b>: Ominous Results<br><b>U</b>: Uncertainty<br><b>B</b>: Bewilderment<br><b>T</b>: Turning Point","verses": 47, "meaning": "<br>*<b> (Shlokas 1-12):</b> The chapter begins on the battlefield of Kurukshetra. The blind king Dhritarashtra asks his secretary, Sanjaya, what his sons (the Kauravas) and the Pandavas are doing. This sets the stage for the conflict.<br> *<b> (Shlokas 13-20):</b> The war is about to commence. Both armies blow their conch shells, creating a tremendous and terrifying sound that signals the ominous and devastating results to come.<br> *<b> (Shloka 28):</b> Arjuna, initially ready for battle, asks Lord Krishna to place his chariot between the two armies so he can see who he must fight. When he sees his own grandfathers, teachers, uncles, and cousins arrayed against him, his confidence shatters and uncertainty sets in.<br> *<b> (Shloka 30):</b> Arjuna becomes completely confused. As stated in Sloka 30, he tells Krishna, I am now unable to stand here any longer. I am forgetting myself, and my mind is reeling. I see only causes of misfortune. <br> * <b> (Shloka 31):</b> This is the critical turning point. Arjuna drops his weapons and directly he states that he is unwilling to fight. In (Shloka 31), he says, I do not see how any good can come from killing my own kinsmen in this battle, nor can I, my dear Krishna, desire any subsequent victory, kingdom, or happiness." },
+            { "id": 2, "name": "Sankhya Yoga", "verses": 72, 
+              "meaning": `<ul class='list-disc pl-5 space-y-2'>
+                              
+                              <li><b>Guru(Shlokas 1-10):</b> Arjuna seeks guidance from Krishna, highlighting his confusion and surrender to his Guru for direction. </li>
+                              <li><b>Identity (Shlokas 11-30):</b> This shlokas focuses on the philosophical understanding of one's true identity, distinguishing between the temporary body and the eternal, indestructible, and unchanging soul (atma). Contrasting it with the material body which is subject to birth, death and decay.</li>
+                              <li><b>Two Dharmas (Shlokas 31-53):</b> It introduces two types of duties. First, <b>Svadharma</b> (Shlokas 32-38), one's own prescribed duties according to their nature, like a warrior's duty to fight. Second, <b>Nityadharma</b> (Shlokas 39-53), the eternal spiritual path, which introduces concepts like Karma Yoga (action without attachment) and Buddhi Yoga (the yoga of intelligence). </li>
+                              <li><b>Atmarama (Shlokas 54-72):</b> This part describes the characteristics of an Atmarama, a person who is self-satisfied in any situation. It details the qualities of a perfectly, self-realized person, referred as a sthita-prajna(the one whose intelligence is steady). These qualities include freedom from desires, stability in all situations and has control over the senses, and experiences complete peace. </li>
+                            </ul>`, 
+               "acronym": `<br><b>G</b> - Guru (1-10) 
+                           <br><b>I</b> - Identity (11-30) 
+                           <br><b>T</b> - Two Dharmas (31-53) 
+                           <br><b>A</b> - Atmarama(54-72) 
+            `},
+            { 
+                "id": 3, 
+                "name": "Karma Yoga", 
+                "verses": 43, 
+                "meaning": `<ul class='list-disc pl-5 space-y-2'>
+                                <li><b>Inaction is Impossible (Shloka 5):</b> No one can remain inactive, even for a moment. It necessary to everyone to act by the qualities born of material nature. Since action is unavoidable, it must be performed correctly.</li>
+                                <li><b>The Pretender (Shloka 6):</b> A person who restricts their senses of action(karma) but lives in his mind on the sense objects, certainly mislead himself and is called a pretender(hypocrite). External give up without internal purity is not true spiritual progress.</li>
+                                <li><b>Action as Sacrifice (Yajna Karma - Shloka 9):</b> Actions must be performed as a sacrifice for Vishnu. Otherwise, a material world binds one through karma. By performing actions as a sacrifice, one remains free from bondage.</li>
+                                <li> The path of spiritual progression is depicted as a ladder:</li>
+                                <ul class='list-decimal pl-5'>
+                                    <li>Laukika Jeevanam (Material Life) and Naastika Vaadam (Atheism) are the lower steps.</li>
+                                    <li>Sakama Karma Yoga (Action with Desire) </li>
+                                    <li>Nishkama Karma Yoga (Selfless Action) </li>
+                                    <li>Jnana Yoga (Knowledge)</li>
+                                    <li>Ashtanga Yoga (Eight-Fold Path)</li>
+                                    <li>Bhakti Yoga (Devotional Service) is the highest step, reached through surrender (Sharanagati).</li>
+                                </ul>
+                                <li><b>Exemplary Behavior (Adarsha Pradarshana - Shloka 21):</b> Common people follow the actions of a great person. The standards set by their exemplary actions are followed by the entire world.</li>
+                                <li><b>Bondage by False Ego(Ahankaram) (Shloka 27-30):</b> explains how this enemy false ego(Ahankaram) causes bondage. Being confused by false ego(Ahankaram), the soul thinks itself to be the individual of activities.This false identification is the root cause of being affected by material desires and reactions. So dedicate all actions and their outcomes to Krishna </li>
+                                <li><b>The Soul's Greatest Enemy (Shloka 37):</b> Lord Krishna identifies lust (kama) as the great enemy. It arises from the mode of passion and transforms into anger, polluting the material world and preventing spiritual realization.</li>
+                            </ul>`,
+                "acronym": `<br><b>T</b>: Tyag (Sacrifice) 
+                            <br><b>R</b>: Rungs of yoga ladder 
+                            <br><b>E</b>: Exemplary Behaviour 
+                            <br><b>E</b>: Enemy of Soul`
+            },
+            { 
+                "id": 4, 
+                "name": "Jnana Karma Sanyasa Yoga", 
+                "verses": 42, 
+                "meaning": `
+                    <div class='space-y-4'>
+                        <div>
+                            <h4 class='font-bold text-lg text-amber-800'>The Eternal Science of Yoga</h4>
+                            <ul class='list-disc pl-5'>
+                                <li><b>Shlokas(1-2):</b> This supreme science was first taught to Vivasvan (the sun-god) , who passed it to Manu, and then to Ikshvaku. It was received through a chain of disciplic succession. However, this chain was broken over time, causing the science to appear lost.</li>
+                                <li><b>Shlokas(6-8):</b> Lord Krishna, who is eternal and the Lord of all living beings , appears in every yuga by his own internal energy (yoga-maya). Whenever there is a decline of Dharma and arise of Adharma, the divine appears to protect the sadus, eliminate offenders, and re-establish the principles of Dharma.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class='font-bold text-lg text-amber-800'>Understanding Divine Action and Gaining Liberation</h4>
+                            <ul class='list-disc pl-5'>
+                                <li><b>Shlokas (9-12):</b> One who truly understands the spiritual nature of the Lord's appearance and activities attains the divine abode after leaving the body and is not reborn.</li>
+                                <li>By becoming free from attachment, fear, and anger, and being purified by knowledge of the divine, many have attained pure love for him.</li>
+                                <li><b>Shlokas(13-14):</b> The four divisions of society (varnas) were created by the Divine based on qualities (gunas) and activities (karma)Despite being the creator, He remains a non-doer(akarta) and is not affected by these actions.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class='font-bold text-lg text-amber-800'>The Path of Knowledge and Sacrifice</h4>
+                            <ul class='list-disc pl-5'>
+                                <li><b>Shloka(24):</b> The act of sacrifice (Brahmarpanam) becomes spiritual when the offering, the act, the fire, and the offerer are all understood to be Brahman (Spirit). A person with such spiritual consciousness reaches the spiritual kingdom.</li>
+                                <li><b>Shloka(34):</b> True knowledge should be learned by approaching a spiritual master, inquiring submissively, and rendering service. Self-realized souls can impart this knowledge because they have seen the truth.</li>
+                                <li><b>Shloka(39):</b> A faithful person with controlled senses who is devoted to this knowledge achieves it and quickly attains supreme spiritual peace.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `, 
+                "acronym": `
+                    <br><b>E</b>: Eternal education (Shashvata Vidya) 
+                    <br><b>A</b>: Accurate understanding (Nijamaaina Avagaahana) 
+                    <br><b>R</b>: Removing reactions (Karma Phalitālanu Tolaginchuta) 
+                    <br><b>S</b>: Sacrifice (Yajnam / Tyagamu)
+                `
+            },
+            { 
+                "id": 5, 
+                "name": "Karma Sanyasa Yoga", 
+                "verses": 29, 
+                "meaning": `
+                    <div class='space-y-4'>
+                        <div>
+                            <h4 class='font-bold text-lg text-amber-800'>Qualities of an Enlightened Person</h4>
+                            <ul class='list-disc pl-5'>
+                                <li><b>Shloka 7:</b> A person engaged in devotional service is pure-hearted, self-controlled, has a subdued mind and senses, is dear to everyone, and is never entangled while working.</li>
+                                <li><b>Shloka 18:</b> Enlightened souls (pandits) see with equal vision. They view a learned and humble brahmana, a cow, an elephant, a dog, and a dog-eater (outcaste) as the same.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class='font-bold text-lg text-amber-800'>The Path to Peace</h4>
+                            <ul class='list-disc pl-5'>
+                                <li><b>Shloka 22:</b> An intelligent person avoids engaging in attachments, because they are temporary, and ultimately lead to misery(sorrow); thus, the wise(jnani) do not delight in them.</li>
+                                <li><b>Shloka 29 (The Peace Formula):</b> The person who knows God as the ultimate supreme Lord of all planets and demigods, and the benefactor and well-wisher of all living entities, and the one who sacrifices the karma to supreme lord, attains peace.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `, 
+                "acronym": `
+                    <br><b>S</b>: Stay in the World
+                    <br><b>T</b>: Three Doers(karta)
+                    <br><b>E</b>: Equal Vision
+                    <br><b>P</b>: Peace Formula
+                `
+            },
+            { 
+                "id": 6, 
+                "name": "Dhyana Yoga", 
+                "verses": 47, 
+                "meaning": `
+                    <div class='space-y-4'>
+                        <div>
+                            <h4 class='font-bold text-lg text-amber-800'>The Mind: Friend or Enemy?</h4>
+                            <ul class='list-disc pl-5'>
+                                <li><b> Shloka 5:</b> One must elevate oneself with the help of the mind, not degrade oneself, because the mind can be both a friend and an enemy.</li>
+                                
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class='font-bold text-lg text-amber-800'>The Path and State of a Yogi</h4>
+                            <ul class='list-disc pl-5'>
+                                <li><b> Shloka 17:</b> Regulation in eating, sleeping, recreation, and work is essential for mitigating material miseries through yoga.</li>
+                                <li><b> Shloka (20-23):</b> Describes the characteristics of a perfected yogi, mind steady on the Self, finding satisfaction by seeing the Self through the pure mind, realizing unlimited transcendental happiness, undisturbed by difficulties, and disassociated from miseries(sorrow). Mentions the characteristics and experience of a yogi in Samadhi, highlighting ultimate liberation and happiness.</li>
+                                <li><b> Shloka (33-34):</b> Arjuna finds the practice of yoga impractical because the mind is restless, unstable, and strong.</li>
+                                <li><b> Shloka 35:</b> Lord Krishna reassures that the mind can be controlled through suitable practice (abhyasa) and detachment (vairagya).</li>
+                                <li><b>The Eight Limbs of Yoga:</b> Yama, Niyama, Asana, Pranayama, Pratyahara, Dharana, Dhyana, and Samadhi.</li>
+                                <li><b>Two Goals of Meditation:</b> Meditation can lead to temporary "Pacification" (focusing on any object) or lasting "Purification" (focusing on a divine object like Krishna).</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class='font-bold text-lg text-amber-800'>The Supreme Yogi</h4>
+                            <ul class='list-disc pl-5'>
+                                <li><b> Shloka 46:</b> A yogi is considered greater than an ascetic(self-disciplined), an empiricist(observer), or a fruitive worker.</li>
+                                <li><b> Shloka 47:</b>The highest of all yogis is the one who always abides in Krishna with great faith and worships Him in devotional service (Bhakti-yoga).</li>
+                            </ul>
+                        </div>
+                    </div>
+                `, 
+                "acronym": `
+                    <br><b>E</b>: Enemy or friend (mind)
+                    <br><b>A</b>: Astanga Yoga
+                    <br><b>S</b>: Success and failure
+                    <br><b>Y</b>: Yogi
+                `
+            },
+            { 
+                "id": 7, 
+                "name": "Jnana Vijnana Yoga", 
+                "verses": 30, 
+                "meaning": `
+                    <div class='space-y-4'>
+                        <div>
+                            <h4 class='font-bold text-lg text-amber-800'>Knowing Krishna Completely</h4>
+                            <ul class='list-disc pl-5'>
+                                <li><b> Shlokas(1-2): </b> One whose mind is attached to Krishna can understand Him completely by practicing Yoga. With this knowledge, nothing further remains to be known.</li>
+                                <li><b> Shloka 3: </b> Out of many thousands of people, only one may strive for perfection, and of those, hardly one truly knows Krishna.</li>
+                                <li><b> Shlokas(7-8): </b> Krishna is supreme, and everything rests on Him like pearls on a thread. He is the essence of all things—the taste of water, the light of the sun and moon, and the ability in humans.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class='font-bold text-lg text-amber-800'>Surrender and Maya</h4>
+                            <ul class='list-disc pl-5'>
+                                <li><b> Shloka 14: </b> The divine energy of Maya is difficult to overcome, but those who surrender to Krishna can easily cross it.</li>
+                                <li><b> Shloka 15: </b> Four types of people who do not surrender:</b> Miscreants(who do illigals), the foolish, the lowest of mankind, and those whose knowledge is stolen by illusion.</li>
+                                <li><b> Shloka 16: </b> Four types of people who do surrender:</b> The pious(deeply religious) people who begin to give devotional service to Krishna, The distressed, the desire of wealth, the inquisitive(who enquires about god), and the seeker of knowledge.</li>
+                                <li><b> Shloka 19: </b> After many births, a wise person(jnani) surrenders to Krishna, understanding Him as the cause of all and everything that exists. Such a soul is very rare.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class='font-bold text-lg text-amber-800'>Krishna's True Nature</h4>
+                            <ul class='list-disc pl-5'>
+                                <li><b> Shloka 23: </b> Worshippers of demigods receive limited and temporary results, but Krishna's devotees reach His supreme abode(shelter).</li>
+                                <li><b> Shlokas (24-25): </b>Unintelligent people do not understand Krishna's eternal and supreme nature, thinking He has a temporary form. Krishna is never manifest to the foolish and unintelligent, as He is covered by his internal potency (Yoga-maya).</li>
+                                <li><b> Shlokas (26-28): </b> Krishna is omniscient(Universal knowledge) He knows the past, present, and future, and all living beings—but no one truly knows Him. Who have acted piously(deeply religious) in previous lives and in this life, and whose evil reactions are completely destroyed, become free from the delusion of dualities and engage in devotional service.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `, 
+                "acronym": `
+                    <br><b>H</b>: Hearing
+                    <br><b>E</b>: Everywhere
+                    <br><b>A</b>: Accepting or Rejecting
+                    <br><b>D</b>: Devotion so Rare
+                `
+            },
+            { 
+    "id": 8, 
+    "name": "Aksara Brahma Yoga", 
+    "verses": 28, 
+    "meaning": `
+        <div class='space-y-4'>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Consciousness at the End of Life</h4>
+                <ul class='list-disc pl-5'>
+                    <li><b> Shloka 5:<b/> The path to the supreme destination involves always remembering the Supreme Lord (Krishna) and fixing one's mind on Him through constant meditation and devotion.</li>
+                    <li><b> Shloka 6:<b/> Whatever state of being a person remembers when they quit their body is the state they will attain without fail. This highlights that one's consciousness at the moment of death determines their next destination.</li>
+                    
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Attaining the Supreme Abode</h4>
+                <ul class='list-disc pl-5'>
+                    
+                    <li><b> Shloka 14:<b/> One must use their intelligence to guide the mind toward remembering God, which is truly good, rather than what is just temporarily pleasant.</li>
+                    <li><b> Shlokas (15-16):</b> All material worlds, even the highest, are places of repeated birth and death. However, one who attains the abode of the Supreme Lord never returns to this cycle.</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>The Superiority of Devotional Service</h4>
+                <ul class='list-disc pl-5'>
+                    
+                    <li><b> Shloka 21:<b/> The results obtained from pure devotional service (Bhakti-yoga) surpass the results of all other spiritual practices like Vedic study, sacrifices, charity, and austerities. A true devotee who understands this reaches the supreme abode.</li>
+                    <li><b> Shloka 22:<b/> Undivided, pure devotional service (ananyā bhakti) is the exclusive means of reaching the Supreme Lord.</li>
+                </ul>
+            </div>
+        </div>
+    `, 
+    "acronym": `
+        <br><b>D</b>: Doubt
+        <br><b>E</b>: End of life
+        <br><b>A</b>: Attaining the supreme
+        <br><b>D</b>: Destinations
+    `
+},
+  { 
+    "id": 9, 
+    "name": "Raja Vidya Raja Guhya Yoga", 
+    "verses": 34, 
+    "meaning": `
+        <div class='space-y-4'>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>The King of Knowledge</h4>
+                <ul class='list-disc pl-5'>
+                    <li><b> Shlokas (1-2):</b> This chapter presents the "king of all knowledge" (Rāja-vidyā) and the "most confidential of all secrets" (Rāja-guhyam). It is pure, directly perceivable, joyful, and eternal.</li>
+                    <li><b> Shloka 3</b> Those who lack faith in this devotional service return to the cycle of birth and death.</li>
+                    <li><b> Shloka 4:</b> The entire universe is filled by the Lord in His unmanifest form. All beings inside in Him, but He is not in them.</li><br>
+                  <b> Characteristics of Confidential Knowledge:</b><br>
+                  This knowledge is described using several key terms:<br>
+	              <b>Rāja-vidyā:</b> The king of all knowledge.<br>
+	              <b>Rāja-guhyam:</b> The most confidential of all secrets.<br>
+	              <b>Pavitram:</b> The purest knowledge.<br>
+	              <b>Pratyakṣāvagamaṁ dharmyam:</b> It is directly perceivable, and therefore, the perfection of religion.<br>
+	              <b>Su-sukham:</b> Very joyful and easily performed.<br>
+	              <b>Avyayam:</b> Everlasting.<br>
+
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>The Path of Devotion</h4>
+                <ul class='list-disc pl-5'>
+                    
+                    <li><b>Shlokas (11-12):</b> The foolish (Mūḍhas) mock, the Lord when He appears in a human form, not knowing His supreme nature. further explains that such foolish people are attracted to demoniac (evil) and atheistic(lack of believe in god) views and that their hopes, actions, and knowledge are all in vain(useless).</li>
+                    <li><b>Shlokas (13-14):</b> The great souls (Mahātmās), protected by the divine nature, worship the Lord with full devotion, knowing Him as the source of all.</li>
+                    <li><b>Shlokas (17-19):</b> Describes that god is the father, mother, sustainer, and grandfather of the universe. He is the goal, the support, the witness, the shelter, and the most dear friend. He is the creation and the dissolution, the beginning and the end. He is everything: the hymns of the Vedas, the sacred syllable om, and he is eternal.
+
+                    <li><b>Shlokas (22-24):</b> : States that those who worship other demigods are actually worshipping the Supreme Lord, but they are doing so incorrectly or indirectly. The Lord is the enjoyer and master of all sacrifices, and those who fail to recognize this true nature fall down (are unsuccessful).</li>
+                    <li><b>Shlokas (25-26):</b> : Those who worship demigods go to the demigod's planets, those who worship ancestors go to the ancestors, those who worship ghosts go to them, but those who worship the Supreme Lord come to Him and live with Him. The Lord accepts even a simple leaf, flower, fruit, or water if it is offered with pure love and devotion.</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>The Lord's Promise</h4>
+                <ul class='list-disc pl-5'>
+                    <li> <b>Shlokas (29-30):</b> The Lord declares, He is equal to all living beings. He have no enemies or partiality. However, it immediately adds, But those who serve lord with devotion are in god, and He also in them. This is a very powerful and merciful statement. It teaches that a person's past is not a barrier to spiritual perfection if they have genuine and unwavering dedication to the Supreme Lord. The act of pure devotion itself purifies the individual, and their determination to serve is what truly matters."</li>
+                    <li><b>Shloka 30: </b> The one who dedicates themselves to devotion quickly becomes righteous (dharma) and attains eternal peace. The Lord also makes a firm declaration.</li>
+                   
+                    <li><b>Shloka 34: </b> Engage your mind always in thinking of God, become devotee, worship, and offer homage unto Lord. By doing so, you will surely come to Him.</li>
+    
+                </ul>
+            </div>
+        </div>
+    `, 
+    "acronym": `
+        <br><b>K</b>: Knowledge
+        <br><b>I</b>: Inconceivable Relationships
+        <br><b>N</b>: Non-worship
+        <br><b>G</b>: Glories of Bhakti
+    `
+
+},
+{
+    "id": 10, 
+    "name": "Vibhuti Yoga", 
+    "verses": 42, 
+    "meaning": `
+        <div class='space-y-4'>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>The Lord as the Ultimate Source</h4>
+                <ul class='list-disc pl-5'>
+                    <li><b> Shlokas (1-3):</b> The lord Krishna reveals to arjuna(his beloved friend), neither the divine gods nor the great sages know his origin. He is the source from which the gods and great sages come. Who knows him as an eternal and supreme of universe, they all free from illusions and evils.</li>
+                    <li> <b> Bhakti as the Bridge:</b> The devotional service (Bhakti) is the link between "Knowledge" and "Sentiments." It's not enough to simply have information; it must be infused with feeling and dedication.</li>
+
+                    <li><b>The Path of Knowledge:</b> Knowledge of the Lord as the source leads to conviction, which leads to concentration, then to purification, and finally to absorption (the mind being fully engaged).</li>
+
+                    <li><b> Knowledge as Transformation:</b> The knowledge of the Lord is not just information. It leads to a spiritual "attraction" and a "transformation" within the individual.</li>
+
+                   <li><b> The Lord's Position and Disposition:</b> This knowledge reveals the Lord's "position" as all-powerful and His "disposition" as all-caring, which makes a devotee eager to connect with Him.</li>
+                    <li><b> Shlokas (4-5): </b> All diverse qualities in living beings—such as intelligence, for knowledge, forgiveness, truthfulness, control over the senses and mind, joy and sorrow,birth and death, and fearand courage, non-violence, charity and fame—are created by the Lord alone.</li>
+                    <li><b> Shlokas (6-8); </b> The seven great sages and the four Manus were born from His mind, and all living beings descend from them. Those who know truth of His glories and divine powers become united with him in Bhakti yoga. The wise(jnani) who knows god is creation of universe, they perfectly worship him with great devotion.</li>
+                    <li><b> Shlokas(9-10): </b> Those who surrender to lord, his devotees remain ever content in him. They derive great satisfaction and bliss. The god gives the divine knowledge by which they can attain Him.</l>
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>The Path of the Devotee</h4>
+                <ul class='list-disc pl-5'>
+                    <li><b>Buddhi yoga:</b> is presented with two possible interpretations or approaches.
+                    <li><b> Surrender with intelligence:</b> This path suggests a surrender to a higher power or principle that is not blind but is done with awareness, wisdom, and understanding. It implies using one's intellect to choose the path of surrender.
+                    <li><b> Surrender intelligence :</b> This path describes the act of completely giving up one's intellect, believing that a divine or higher entity knows everything. This is a more complete form of surrender where one's own understanding is relinquished</li>
+                    <li>A true understanding of the Lord's opulence and power leads one to engage in pure, unwavering devotional service.</li>
+                    <li>This knowledge is not merely informational; it is transformational, creating a spiritual attraction that bridges intellectual understanding with heartfelt sentiment.</li>
+                </ul>
+            </div>
+        </div>
+    `, 
+    "acronym": `
+        <br><b>S</b>: Source of Everything
+        <br><b>E</b>: Essence of Gita
+        <br><b>E</b>: Everywhere
+    `
+},
+ { 
+    "id": 11, 
+    "name": "Visvarupa Darsana Yoga", 
+    "verses": 55, 
+    "meaning": `
+        <div class='space-y-4'>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Arjuna's State and Request</h4>
+                <ul class='list-disc pl-5'>
+                    <li> <b>Shlokas(1-2):</b> Arjuna states that his delusion has been resolved by Krishna's teachings about the most confidential spiritual matters.</li>
+                    <li> <b>Shlokas(3-4):</b> Arjuna requests to see Krishna's "divine form" and asks him to show it if he is capable of seeing it.</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Krishna Description</h4>
+                <ul class='list-disc pl-5'>
+                    <li> <b>Shlokas (5-6):<b/> Krishna says to behold his universal form with infinite shapes and colors, Lord Krishna now asks Arjun to observe the eternal gods and other wonders in that divine form.</li>
+                                        <li> The universal form of the Lord not only contains wonders that exist on earth but also wonders that exist in the higher planetary systems, never seen before together in this manner. He further reveals that the divine gods are all tiny particles of his divine form, he shows the <b>twelve adityas</b> (The twelve aspects of sun: Dhata, Mitra, Aryama, Shakra, Varun, Amsha, Bhaga, Vivasvan, Pusha, Savita, Tvashta, Vaman. <b> eight vasus</b> (a class of divines often associated with fire, light, and natural elements), <b>eleven rudras</b> (who are manifestations of Shiva, Hara, Bahurupa, Tryambaka, Aparajita, Vrisakapi, Shambhu, Kapardi, Raivata, Mrigavyadha, Sarva, Kapali), two Ashwini Kumars, as well as the <b>forty-nine maruts</b> (wind gods) within himself.</li>
+                    
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Sanjaya Description</h4>
+                <ul class='list-disc pl-5'>
+                    <li> <b>Shlokas (10-13):<b/> Sanjaya says that Arjun saw unlimited faces and eyes, and wielding many kinds of divine weapons. The Supreme Lord Shree Krishna, displayed his divine form to Arjun.</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Arjuna Description</h4>
+                <ul class='list-disc pl-5'>
+                     <b> Shlokas(15-22):</b> 
+                       <li> Arjuna says that he can see all the gods, sages, and beings inside Krishna's body, including Brahma and Shiva.  Arjuna describes Krishna's universal form as having countless arms, stomachs, faces, and eyes, and that it has no beginning, middle, or end.</li>
+                       <li> Arjuna recognizes Krishna as the ultimate, supreme, and everlasting being. He sees Krishna as the foundation of everything and the protector of the eternal religion (Sanātana Dharma). Arjuna describes Krishna as having infinite power, with no beginning or end. He says Krishna's eyes are like the sun and moon, and his mouth is like fire. Krishna's radiance fills the entire universe.</li>
+                       <li> Arjuna says Krishna's form fills the entire space between heaven and earth and all directions. Seeing this huge and terrifying form makes all the worlds tremble in fear.</li>
+                     <b> Shlokas(23-31):</b>  
+                       <li> Arjuna is having a vision of God's universal form. This form is so powerful and scary that it makes him tremble with fear. He sees that everyone in the war, including his family and teachers, are all being destroyed by God's power.</li>
+                       
+                </ul>
+            </div>    
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Declaration of Krisna as a Time</h4>
+                <ul class='list-disc pl-5'>
+                    <b> Shlokas (32-33):</b> <li> When Arjuna asks God who he is, God replies that he is "Time," the destroyer of all things. He tells Arjuna not to worry about killing anyone because he has already decided that they will die. Arjuna's job is simply to fight and be the person who carries out God's will.</li> 
+                        <li>He tells Arjuna that all the warriors on both sides are already fated to die, and Arjuna is simply a nimitta mātra </li>
+                    
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Praise of Arjuna</h4>
+                <ul class='list-disc pl-5'>
+                <li> <b> Shloka 43:</b> Arjuna praises Krishna, calling him the father, the most worshipable guru, and the greatest being in all the worlds, stating there is none equal to or greater than him.</li>
+ </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>The Path to Krishna</h4>
+                <ul class='list-disc pl-5'>
+                    <li> <b>Shloka 55:</b> A person who is free from worldly desires, is dedicated to Krishna, considers Krishna the supreme goal of their life, and is friendly to all living beings, will undoubtedly attain Krishna.</li>
+                </ul>
+            </div>
+        </div>
+    `, 
+    "acronym": `
+        <br><b>R</b>: Request 
+        <br><b>U</b>: Universal form
+        <br><b>P</b>: Prayers of Arjuna
+        <br><b>A</b>: Armed form
+    `
+},
+ { "id": 12, "name": "Bhakti Yoga", "verses": 20, "meaning": `
+        <div class='space-y-4'>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'> Arjuna Question:</h4>
+                <li> <b>Shloka 1: </b> Arjuna asks, "Who is considered more perfect? those who are always engaged in Your devotional service, or those who worship the Brahman, the unmanifested?". </li>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'> The Answer - The Path of Bhakti (Devotion) is Superior</h4>
+               <li> <b> Shloka 2: </b> Lord Krishna states that those who fix their minds on His personal form with great and transcendental(superior) faith are considered most perfect.</li>
+               <li> <b> Shlokas (3-4): </b>  Those who worship the formless aspect of the Absolute Truth—the eternal, the indefinable, the unmanifest(invisible), the all-pervading(spread througtout), the unthinkable, the unchanging, by restraining their senses and being even-minded everywhere, such persons, engaged in the welfare of all beings, also attain Me.</li>
+               
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'> The Path of Devotion - How it Works</h4>
+                <li> <b> Shloka 5: </b> The path for those attached to the unmanifested, impersonal aspect of the Supreme Being is very difficult. Progress is a struggle for physical beings because the impersonal(invisible) form is hard to grasp and worship.</li>
+                <li> <b> Shlokas (6-7):</b> Who surrender all their activities to Him,and fully devoted, and meditate on Him, fixing their minds upon Krishna. They are free from the ocean of birth and death(no rebirth).</li>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'> A Ladder of Spiritual Progress</h4>
+               <p>A hierarchical model is presented, outlining a progression in spiritual practice.</p>
+                <ul class='list-disc pl-5 space-y-2'>
+                    <li><b>Highest Shloka 8:</b> "Mind & intelligence Absorbed natural - living in me." This is the highest state where the devotee's consciousness is naturally and completely absorbed in the divine.</li>
+                    <li><b>Second Shloka 9:</b> If one cannot reach the highest state, they should intentionally fix their mind on Krishna through disciplined practice (sadhana).</li>
+                    <li><b>Third Shloka 10:</b> If intentional meditation is difficult, one should work for the divine (seva) by performing actions as an offering.</li>
+                    <li><b>Lowest 11:</b> The lowest step is performing selfless work for a higher cause, which eventually leads to the higher stages of devotion.</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'> Distinguishing between Different Paths</h4>
+                <li> In this world, Devotion (Bhakti) is considered <b> "Best" and "Dear to Krishna".</b> 
+                <li>Righteousness (Virtues/Dharma) is described as <b> "Unsustainable" </b> on its own because it is ultimately limited without a spiritual foundation.</li>
+                <li> Impersonalism(deattachment) is labeled as <b> "Problematic" </b> and a heavy burden. 
+                <li>While demonic qualities are associated with the <b>"Terrible/Worst".</b></li>
+                
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'> Qualities of a Devotee</h4>
+               
+               <p>The key qualities of a devotee includes:</p>
+                <ul class='list-disc pl-5 space-y-2'>
+                    <li><b>General Qualities (Shlokas 13, 14):</b> A devotee is compassionate, friendly, not envious(Jealous), kind, and merciful(forgive) to all living beings. They are deattached from possessions and ego, and balance in happiness and sadness, forgiving, tolerant, content, and self-controlled. They are also steadfast(loyal) in their devotional service, with their mind and intelligence fixed on the divine.</li>
+                    <li><b>Emotional Stability and Action (Shlokas 15-17):</b> A devotee is calm, a source of peace, and not a source of trouble to others. who equipoised(balance) the joy, sorrow, fear, and anxiety, and do not celebrate any joy, and do not react to sorrow and regret, or desire. They also renounce both good and bad things in the world. Who do not expect outcomes of their work and free from selfishness in all. such devotees of Mine are dear to Me.</li>
+                    
+                    <li><b>Relationships and Reputation (Shlokas 18,19):</b> A devotee is equal to friends and enemies, and remains the same in honor and dishonor, heat and cold, and happiness and distress. They are free from wicked association, balanced in praise and criticism, and stay steady with whatever comes their way. Who are silent and purposeful in their speech, with a mind steady and fixed in knowledge and devotion.</li>
+                </ul>
+            </div>
+            
+        </div>
+    `, "acronym": `<br><b>G</b>: God head (the nature of God)<br><b>O</b>: Option (bhakti as a choice)<br><b>D</b>: Devotee's Disposition (the nature of a devotee)` 
+},
+{ "id": 13, "name": "Ksetra Ksetrajna Vibhaga Yoga", "verses": 35, "meaning": `
+ <div class='space-y-4'>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'>Shloka 1: Arjuna's Question</h4>
+ <p>Arjuna wishes to understand the nature of <i>prakṛiti</i> (material nature) and <i>puruṣh</i> (the soul), and what constitutes the <i>kṣhetra</i> (the field of activities) and the <i>kṣhetrajña</i> (the knower of the field). He also asks about true knowledge and its goal.</p>
+</div>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'>Shloka 2: The Definition of the Field and the Knower</h4>
+ <p>The Supreme Divine Lord explains that the body is called the <i>kṣhetra</i> (the field of activities) and the one who knows this body is called the <i>kṣhetrajña</i> (the knower of the field) by sages.</p>
+ </div>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'>Shloka 3: The Supreme Knower</h4>
+ <p>Krishna declares Himself to be the knower of all individual fields of activity. He states that true knowledge is the understanding of the body as the field and the soul and God as the knowers.</p>
+</div>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'>Shlokas (6-12): The Composition of the Field and the Nature of Knowledge</h4>
+<p>The field of activities (the body) is composed of the five great elements, ego, intellect, and other components. Knowledge is characterized by qualities such as humbleness, freedom from hypocrisy, non-violence, forgiveness, and self-control. It also includes dispassion toward the senses, absence of egotism, and keeping in mind the evils of birth, disease, old age, and death. Other qualities of knowledge are non-attachment, even-mindedness, constant devotion to God, and an inclination for solitary places. All these are declared to be knowledge, while what is contrary to them is ignorance.</p>
+</div>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'>Shloka (22, 24, 30): The Cause of Rebirth and Liberation</h4>
+<p>When the puruṣh (individual soul) seated in prakṛiti (the material energy) desires to enjoy the three guṇas(modes of material nature) becomes the cause of its birth in higher or lower wombs. Those who understand the truth about the Supreme Soul, the individual soul, material nature, and the interaction of the modes will not be reborn.True vision is the understanding that all actions are performed by material nature, while the soul itself does nothing.</p>
+ </div>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'>Shlokas (33-35): The Analogy of the Soul and Space</h4>
+ <p>Just as space holds everything without being contaminated, the soul, though its consciousness pervades(spreads throughtout) the body, is not affected by the body's attributes. Those who perceive the difference between the body and the knower of the body, and the process of release from material nature, attain the supreme destination. </p>
+ </div>
+ </div>
+ `, "acronym": `<br><b>K</b>: Knower of the body and field<br><b>N</b>: Nature and the soul<br><b>O</b>: Overcoming the modes<br><b>W</b>: Wisdom of the true self` },
+ { "id": 14, "name": "Gunatraya Vibhaa yoga", "verses": 27, "meaning": `
+ <div class='space-y-4'>
+ <div>
+ <li> <b>Shloka 1:</b> The Krishna says he once again explain the supreme wisdom, the best of all knowledge; by knowing which, all the great saints attained the highest perfection.</li>
+ <li> <b>Shloka 2:</b> Those who take spiritual shelter in this wisdom will be united with Me. They will not be reborn at the time of creation nor destroyed at the time of dissolution.</li>
+ <li> <b>Shloka 4:</b> The total material substance, prakṛiti, is the womb. Krishna fill it with the individual souls, and thus all living beings are born. For all species of life that are produced, the material nature is the womb, and he is the seed-giving Father.</li>
+ </div>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'> The Three Gunas</h4>
+ <li><b> Shloka 5: </b>  The material energy consists of three guṇas (modes)—sattva (goodness), rajas (passion), and tamas (ignorance). These modes bind the eternal soul to the body.
+ 
+ </div>
+ <div>
+<h4 class='font-bold text-lg text-amber-800'>The Nature of Gunas  <b> Shlokas (6-10):</b></h4>
+ 
+	<li><b>Sattva (Goodness):</b></li>
+   Explains that Sattva is pure and illuminating. It binds the soul through attachment to happiness and knowledge and it frees from all sins.
+	<li><b>Rajas (Passion):</b></li>
+   Explains that Rajas is born of desires and attachments. It binds the soul through action. Because of this, the embodied soul becomes bound by activities driven by desire." This is also linked to "Hyperactivity".
+	<li><b>Tamas (Ignorance):</b></li>
+	Explains that Tamas is born of ignorance. It deludes the embodied soul and binds it through carelessness, laziness, and sleep. This is also linked to "Lethargy"(dullness).<br>
+    
+ </div>
+<div>
+ <h4 class='font-bold text-lg text-amber-800'> Signs of Gunas</h4>
+ <li> <b>Shlokas (11-13):</b>When all the gates of the body are illumined by knowledge, know it to be a manifestation of the mode of "goodness"(sattva). When the mode of "passion"(rajas) dominates, the symptoms of greed, exertion(struggle) for physical gain, restlessness, and craving develop. carelessness, inertia(laziness), negligence, and delusion—these are the dominant signs of the mode of "ignorance"(tamas).
+<li> <b>Shlokas (14-15):</b> Those who die with predominance(superiority) of sattva reach the pure abodes (which are free from rajas and tamas). Those who die with prevalence of the mode of passion are born among people driven by work, while those dying in the mode of ignorance take birth in the animal kingdom..</li>
+ </div>
+ <div>
+<h4 class='font-bold text-lg text-amber-800'>Results of three Gunas </h4>
+<li> <b> Shloka 16 :</b> The fruit of actions(karma phala) performed in the mode of "goodness"(sattva) presents <b>pure results</b>. Actions done in the mode of "passion"(rajas) result in <b>pain</b>, while those performed in the mode of "ignorance"(tamas) result in <b>darkness</b>.</li>
+</div>
+<div>
+    <h4 class='font-bold text-lg text-amber-800'>Arises of Gunas </h4>
+<li> <b>Shloka 17: </b>From the mode of "goodness"(sattva) arises <b>knowledge</b>, from the mode of "passion"(rajas) arises <b>greed,</b> and from the mode of "ignorance"(tamas) arise <b>negligence and delusion.</b></li>
+</div>
+<div>
+    <h4 class='font-bold text-lg text-amber-800'>Status of Gunas </h4>
+<li> <b> Shloka 18 :</b>Those situated in the mode of "goodness"(sattva) rise <b>high(upward)</b>; those in the mode of "passion"(rajas) stay in the <b>middle</b>; and those in the mode of "ignorance"(tamas) go <b>low(downward)</b>.</li>
+<li> <b> Shloka 19 :</b> When wise(jnani) persons see that in all work there is no agent of action other than the three guṇas, and they know lord to be transcendental(eternal) to these guṇas, they attain divine nature.</li>
+</div>
+ <div> 
+    <h4 class='font-bold text-lg text-amber-800'>Characteristics and bondage of Gunas </h4>
+    <li> <b> Shloka 21 :</b> Arjuna asks, What are the characteristics of those who have gone beyond the three guṇas? How do they act? How do they go beyond the bondage of the guṇas?</li>
+    <li> <b> Shloka 22-23 :</b> Neutrality to the modes: A person who is transcendental to the modes of nature does not dislike them when they appear, nor do they desire them when they are absent. This means they do not hate clarity and knowledge (born of sattva), nor are they bothered by activity and passion (born of rajas), and they do not mind confusion or delusion (born of tamas).</li>
+    <li> <b> Shloka 24-25 :</b> Those who are alike in happiness and distress; who are established in the self; who look upon a clod, a stone, and a piece of gold as of equal value; who remain the same amidst pleasant and unpleasant events; who are intelligent; who accept both blame and praise with equanimity; who remain the same in honor and dishonor; who treat both friend and foe alike; and who have abandoned all enterprises, they are said to have risen above the three guṇas.</li>
+    <li> <b> Shloka 27 :</b>Those who serve divine with unalloyed devotion rise above the three modes of material nature and come to the level of the formless Brahman(eternal).</li>
+`, "acronym": `<br><b>T</b>: Three Modes  <b>R</b>: Race for Prominence  <b>A</b>: Actions in the Modes  <b>P</b>: Pure Life` },
+ { "id": 15, "name": "Purushottama yoga", "verses": 20, "meaning": `
+ <div class='space-y-4'>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'>1. The Root of Existence </h4>
+ <li> <b>Shloka 1:</b> This introduces the metaphor(comparison between two things) of the <i>Aśvattha tree</i> with its roots above, branches below, and its leaves are the mantras of the vedas. This tree represents the material(physical) world, which is sustained by its spiritual roots—the Supreme Being. One who understands this tree knows the Vedas.</li>
+ </div>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'>2. The Divine as the Source of All Light</h4>
+ <li><b> Shlokas 6 and 12 :</b> Shloka 6 states that Krishna's supreme abode(shelter) is not illuminated(enlighted) by the sun, the moon, or fire. Those who reach this abode(shelter) never return to the material world.</li>
+ <li> Shloka 12 clarifies that the splendor(glory) of the sun, the moon, and fire all come from Him. He is the source of all light that illuminates the entire universe.</li>
+ </div>
+ <div>
+<h4 class='font-bold text-lg text-amber-800'>3. The Divine as the Sustainer and Consumer</h4>
+ <li><b> Shlokas 13 and 14 :</b> Shloka 13 explains that Krishna enters every planet and sustains them with His energy. He is the source of the nectar(heavenly food) and herbs, creating the life-sustaining elements.</li> 
+ <li> Shloka 14 describes the divine presence within living beings as the fire of digestion ("jatharagni"). He digests the four types of food, showing that He is not just an external force but also the internal mechanism of life.</li>
+ </div>
+<div>
+ <h4 class='font-bold text-lg text-amber-800'>4. The Divine as the Knower and Memory</h4>
+<li> <b>Shloka 15 </b> This Shloka states that Krishna is seated in everyone's heart.From Him memory, knowledge, and forgetfulness will come. He is the object of all the Vedas, the compiler of the Vedanta, and the knower of the Vedas.</li>
+ </div>
+ <div>
+<h4 class='font-bold text-lg text-amber-800'>5. The Purushottama</h4>
+<li> <b> Shlokas 16 and 17 :</b> Shloka 16 introduces two types of beings: the <i>Kshara</i> (fallible) and the <i>Akshara</i> (infallible). The <i>Kshara</i> are all the living beings in the material world, while the <i>Akshara</i> are those in the spiritual world.</li>
+<li> Shloka 17 reveals a third, and highest, being: the <i>Purushottama</i> (the Supreme Person). He is beyond both the <i>Kshara</i> and <i>Akshara</i> and sustains the three worlds. This is a central philosophical point of the chapter.</li>
+<li> <b> Shlokas 18-20 :</b> Krishna says that he is transcendental(divine) to both the fallible(kshara) and the infallible(Akshara), and because he is the greatest, He celebrated in the world and in the Vedas as the Supreme Person (Purushottama). Who knows Krishna as the Purushottama, without any doubt, is a knower of everything ("sarvavith").</li>
+<li>Anyone who understands this knowledge becomes intelligent and achieves a state of perfection.</li>
+
+ </div>
+ 
+</div> 
+`, "acronym": `<br><b>H</b>: Home or Hotel<br><b>O</b>: On and On, Over and Over Again<br><b>M</b>: Maintainer of Body, Mind, Soul<br><b>E</b>: Essence in 3 Verses` },
+ { "id": 16, "name": "Daivasura Sampad Vibhaga Yoga", "verses": 24, "meaning": `
+ <div class='space-y-4'>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'> Daivi Sampada Divine Qualities </h4>
+ <li> <b>Shlokas (1-3):</b> The Supreme Divine Personality said The qualities—fearlessness, purity of mind, steadfastness(devotion) in spiritual knowledge, charity, control of the senses, sacrifice, study of the sacred books, austerity(disciplane), and straightforwardness; non-violence, truthfulness, absence of anger, peacefulness, restraint(self control) from fault-finding, compassion toward all living beings, absence of covetousness(greedness), gentleness, humbleness, and being in stable, forgiveness, fortitude(courage), cleanliness, bearing enmity toward none, and absence of vanity(ego). these are the saintly virtues(dharma) of those blessed with a divine nature</li>
+ </div>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'> Demonic Qualities</h4>
+ <li><b> Shlokas (7-20):</b> Demonic persons are ignorant of what is proper and improper conduct. They lack purity, good conduct, and truthfulness. They hold a worldview that rejects divine authority and moral order. They believe the world is without a God, created simply from the union of the two sexes, with no purpose beyond sexual gratification(satisfaction).</li>
+ Such individuals are characterized by:
+<li> <b>Insatiable(unsatisfied) desires:</b> They are driven by an endless pursuit of lust, anger, and greed.</li>
+<li> <b> False beliefs:</b> They cling to their own cruel, false tenets(beliefs), and are obsessed with accumulating wealth and satisfing their senses as the highest purpose of life.</li>
+<li> <b>Hypocrisy(fraud) and pride:</b> They are full of hypocrisy, pride, arrogance, and egotism. They perform sacrifices out of a show of pride, not according to scripture.</li>
+<li> <b>Cruelty and hate: </b> They are cruel and hateful, abusing God, who resides within their own bodies and the bodies of others.</li>
+ </div>
+ <div>
+<h4 class='font-bold text-lg text-amber-800'>Gates to Darkness</h4>
+ <li><b> Shlokas (21-22):</b> There are three gates leading to the hell of self-destruction for the soul—<b>lust, anger, and greed.</b></li>
+ <li> <b>lust - <b>leads to sexual assault</li>
+ <li> <b>Anger - </b>leads to violence</li>
+ <li> <b>Gree - </b>leads to corruption</li><br>
+ Therefore, one should abandon(discard) all three and those who try hard for the welfare of their soul, and thereby attain the supreme goal.
+ </div>
+<div>
+ 
+`, "acronym": `<br><b>D</b>: Divine or Demoniac<br><b>O</b>: Opinions and Outlook of Demons<br><b>G</b>: Gates to Hell` },
+{ 
+    "id": 17, 
+    "name": "Sraddhatraya Vibhaga Yoga", 
+    "verses": 28, 
+    "meaning": `
+        <div class='space-y-4'>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Arjuna Questtion</h4>
+                <ul class='list-disc pl-5'>
+                    <li> <b>Shloka 1:</b> where do they stand who disregard(ignore) the injunctions of the scriptures, but still worship with faith? Is their faith in the mode of goodness, passion, or ignorance?.</li>
+
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Three kinds of Faith and objects of worship</h4>
+                <ul class='list-disc pl-5'>
+                    <li> <b>Shlokas (2,3):<b/> The Supreme Divine Krishna said: Every human being is born with innate(capability to) faith, which can be of three kinds—sāttva(goodness), rājas(passion), and tāmas(ignore). All people possess faith, and whatever the nature of their faith, that is verily what they are.</li>
+                    <li> <b>Objects of worship (Shloka 4):<b/> Those in the mode of goodness(sattva) worship the celestial gods; those in the mode of passion(rajas) worship the yakṣhas and rākṣhasas; those in the mode of ignorance(tams) worship ghosts and spirits.</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Demonic acts</h4>
+                <ul class='list-disc pl-5'>
+                    <li> <b>Shlokas (5,6):<b/> Some people perform stern austerities(strict harsh practices) that are not enjoined by the scriptures, but rather motivated by hypocrisy(fraud) and egotism. Impelled by desire and attachment, they torment not only the elements of their body, but also God dwell(live) within them as the Supreme Soul. These senseless people to be of demoniacal resolves.</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Preference of Food</h4>
+                <ul class='list-disc pl-5'>
+                     <b> Shlokas(8-10):</b><br>
+                     <li> Goodness(sattva): People in goodness prefer foods that are juicy, nourishing, and tasty. These foods promote health, happiness, and a long life.</li>
+                     <li>Passion(rajas): People in passion like foods that are bitter, sour, salty, hot, and dry. These foods are said to cause pain, grief, and disease.</li>
+                     <li>Ignorance(tamas): People in ignorance enjoy food that is overcooked, stale, impure, or even putrid.
+                       
+                </ul>
+            </div>    
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Sacrifices </h4>
+                <ul class='list-disc pl-5'>
+                    <b> Shlokas (11-13):</b><br>
+                         <li>Goodness(sattva): A sacrifice performed as a duty, without expecting a reward and with a firm conviction, is an act of goodness.
+                         <li>Passion(rajas): A sacrifice done to gain material benefit or with a hypocritical motive is of the nature of passion.
+                         <li>Ignorance(tamas): A sacrifice performed without faith, scriptural guidance, proper offerings, or donations is an act of ignorance.
+                    
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>Austerity(Practices) and Charity</h4>
+                <ul class='list-disc pl-5'>
+                 <b> Shlokas (14-19):</b>
+                    <li> Body: This involves worshiping the Supreme Lord, spiritual masters, and elders with cleanliness, simplicity, and non-violence.</li>
+                    <li>Speech: This includes speaking truthful, gentle, and beneficial words that don't cause distress, as well as regularly reciting scriptures.</li>
+                    <li>Mind: This is characterized by serenity, gentleness, silence, self-control, and purity of purpose.</li>
+                 <b>  Charity (Shlokas 20-22):</b>
+                    <li>Goodness(sattva): Giving to a worthy person at the right time and place, simply because it is the right thing to do and without expecting anything in return.
+                    <li>Passion(rajas): Giving with in the hope of a reward or return.
+                    <li>Ignorance(tamas): Giving to unworthy persons at the wrong place or time, without respect or with contempt.
+ </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class='font-bold text-lg text-amber-800'>The Significance of "Om Tat Sat"</h4>
+                <ul class='list-disc pl-5'>
+                    <b>Shlokas (23-27):</b>
+                        <li> Om" is used to begin acts of sacrifice, charity, or penance(spiritual practice) according to Vedic rules.
+
+                        <li>"Tat" is said to those who perform these acts without desiring rewards, but with the goal of being free from material ties.
+
+                        <li>"Sat" means eternal existence and goodness. It is used to describe auspicious actions and being established in spiritual practices.</li><br>
+                        <li> <b>Shloka 28:</b> Any acts of sacrifice, charity, or penance done without faith are called "Asat" and are useless in both this life and the next.</li>
+                </ul>
+            </div>
+        </div>
+    `, 
+    "acronym": `
+        <br><b>F</b>: Faith
+        <br><b>A</b>: Austerities
+        <br><b>C</b>: Charity
+        <br><b>E</b>: Enjoyer of Everything
+    `
+},
+ 
+            { "id": 18, "name": "Moksha Sanyasa Yoga", "verses": 78, "meaning": `
+ <div class='space-y-4'>
+ <div>
+    <p> <b>Arjuna Question - Shloka 1:</b> I wish to understand the nature of sanyās (sacrifice of actions) and tyāg (sacrifice of desire for the fruits of actions(karma phala)). I also wish to know the distinction between the two?.</p>
+    <p> <b>Shloka 2:</b> Krishna says Giving up of actions motivated by desire is what the learned understand as sanyās. surrendering the fruits of all actions is what the wise(jnani) declare to be tyāg.</p>
+    <p> <b>Shloka 5,6:</b> Actions based upon sacrifice, charity, and penance(absolution) should never be abandoned; they must certainly be performed. Indeed, acts of sacrifice, charity, and penance are purifying even for those who are wise.These activities must be performed without attachment and expectation for rewards.</p>
+    </div>
+    <div>
+ <h4 class='font-bold text-lg text-amber-800'>The Five Factors of Action</h4>
+    <p> <b>Shloka 14:</b> The doer (soul), the senses, the place, the efforts, and Divine Providence(destiny)—these are the five factors of action.
+    <p> <b>Shlokas 15,16:</b> These five are the factors for whatever action is performed, whether proper or improper, with body, speech, or mind. Those who do not understand this regard the soul as the only doer(cause of an action). With their impure intellects they cannot see things as they are.   
+    </div>
+ 
+<div>
+ <h4 class='font-bold text-lg text-amber-800'>The Three Modes of Nature</h4>
+ <p> <b>Shlokas (19-22):</b>  
+    Three kinds of knowledge, action, and the doer(soul) are distinguished according to the three modes of material nature.</p>
+ <ul>
+ <li>**Knowledge of Goodness**: A person sees the undivided eternal reality in all diverse living beings.</li>
+ <li>**Knowledge of Passion**: A person sees manifold living beings as separate and unconnected.</li>
+<li>**Knowledge of Ignorance**: One is engrossed(absorbed) in a partial concept, mistaking it for the whole truth without reason.</li>
+ <li><b>Shlokas (23-25):</b>** Action of Goodness**: Action that is free from attachment and aversion, and done without desire for rewards, is in the mode of goodness.</li>
+                        <li>**Action of Passion**: Action that is prompted by selfish desire, enacted with pride, and full of stress, is in the nature of passion.</li>
+                        <li>**Action of Ignorance**: Action that is begun out of delusion, without thought to one's own ability, and disregarding consequences, loss, and injury to others.</li>
+ <li><b>Shlokas (26-28):</b>** Performer of Goodness**: The performer(soul) is when he or she is free from egotism and attachment, endowed with enthusiasm and determination, and equipoised in success and failure.</li>
+                        <li>**Performer of Passion**: The performer(soul), when he or she craves the fruits of the work, is covetous, violent-natured, impure, and moved by joy and sorrow..</li>
+                        <li>**Performer of Ignorance**: The one performer who is undisciplined, vulgar, stubborn, deceitful(disonest), slothful(lazy), despondent, and a procrastinator.</li>
+ <li><b>Shlokas (30-32):</b>**Intellect of Goodness**: This intellect clearly understands what is right and wrong, what is duty and what is not, what to fear and what not to fear, and what leads to bondage versus liberation.</li>
+                        <li>**Intellect of Passion**: This intellect is confused. It cannot distinguish between what is righteous(dharma) and unrighteous(adharma), or between right and wrong conduct. </li>
+                        <li>**Intellect of Ignorance**:This intellect is completely clouded. It mistakes irreligion for religion and sees untruth as truth. </li>
+ </ul>
+ </div>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'>Duties of Each Class</h4>
+ <p>Shlokas(41-45):</b></p>
+ <ul>
+    <li>Brahmins: Their duties are rooted in qualities like tranquility, self-restraint, purity, patience, and knowledge.</li>
+    <li>Kshatriyas: Their work is defined by qualities such as valor, strength, fortitude, skill in weaponry, and leadership.</li>
+    <li>Vaishyas: Their natural duties include agriculture, dairy farming, and commerce.</li>
+    <li>Shudras: Their natural duty is to serve through their work.</li>
+ </div>
+ <div>
+ <h4 class='font-bold text-lg text-amber-800'>The path of Liberation</h4>
+ Shlokas(54-57):</b>
+ <ul>
+    <li>One situated in the transcendental Brahman realization becomes mentally serene, neither grieving nor desiring. Being equitably disposed toward all living beings, such a yogi attains supreme devotion.</li>
+    <li>Only by loving devotion to lord does one come to know who the god in Truth. Then, having come to know Krishna, His devotee enters into full consciousness of Krishna.</li>
+    <li>Krishna devotees, though performing all kinds of actions, take full refuge in Krishna. By lord grace, they attain the eternal and imperishable abode.</li>
+    <li><b>Shlokas(60-67):Surrender:</b> Krishna instructs Arjuna to **surrender exclusively to Him** with his whole being to attain perfect peace and the eternal abode.</li>
+    <li><b>Devotion:</b> Krishna asks Arjuna to always think of, be devoted to, and worship Him. He promises that by doing so, Arjuna will certainly come to Him.</li>
+    <li><b>The Supreme Pledge</b> Krishna pledges that by abandoning all other duties (dharmas) and simply surrendering to Him, He will liberate Arjuna from all sinful reactions.</li>
+ </ul>
+ </div>
+ <div>
+<h4 class='font-bold text-lg text-amber-800'>Conclusion</h4>
+ <ul>
+ <li><b>Shloka 73: </b> Arjuna's illusion is dispelled, and he resolves to act according to Krishna's instructions.</li>
+ <li><b>Shlokas(74-78):</b> Sanjaya, who heard the entire conversation by the grace of Veda Vyas, expresses his awe and joy. He concludes Wherever there is Shree Krishna, the Lord of all Yog, and wherever there is Arjun, the supreme archer, there will also certainly be unending opulence(luxury), victory, prosperity, and righteousness.</li>
+</ul>
+</div
+ </div>
+ `, "acronym": "<br><b>S</b>: Summary of Karma Yoga <b>M</b>: Modes of Nature <b>I</b>: Ideal Worker <b>L</b>: Love of God <b>E</b>: End Results" }
+        ];
+
+        // --- Hero Slideshow ---
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        if (slides.length > 1) {
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 5000); // Change slide every 5 seconds
+        }
+
+        // --- Mobile Menu ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Chapter Accordion (MODIFIED LOGIC) ---
+        const accordionContainer = document.getElementById('accordion-container');
+        if (accordionContainer) {
+            chapters.forEach(chapter => {
+                const item = document.createElement('div');
+                item.className = 'bg-white/70 rounded-xl shadow-lg card';
+
+                // Build the content for the accordion dynamically
+                let contentHTML = '';
+                if (chapter.meaning) {
+                    contentHTML += `<div class='p-4'>${chapter.meaning}</div>`;
+                }
+                
+                // Group verses and acronym in a sub-section
+                contentHTML += `<div class='p-4 border-t border-amber-200'>`;
+                if (chapter.verses) {
+                    contentHTML += `<p class="mb-2"><strong>Verses:</strong> ${chapter.verses}</p>`;
+                }
+                if (chapter.acronym) {
+                    contentHTML += `<div class="mt-2"><strong class="text-amber-800">Acronym:</strong> ${chapter.acronym}</div>`;
+                }
+                contentHTML += `</div>`;
+
+
+                item.innerHTML = `
+                    <button class="accordion-button w-full text-left p-4 flex justify-between items-center transition-colors hover:bg-amber-100/50">
+                        <span class="font-bold text-lg text-amber-800">Chapter ${chapter.id}: ${chapter.name}</span>
+                        <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content text-gray-700 space-y-2">
+                        ${contentHTML}
+                    </div>
+                `;
+                accordionContainer.appendChild(item);
+            });
+
+            accordionContainer.addEventListener('click', (e) => {
+                const button = e.target.closest('.accordion-button');
+                if (button) {
+                    // This logic closes other accordions when a new one is opened
+                    const allButtons = accordionContainer.querySelectorAll('.accordion-button');
+                    allButtons.forEach(btn => {
+                        if (btn !== button && btn.classList.contains('active')) {
+                            btn.classList.remove('active');
+                            btn.querySelector('svg').classList.remove('rotate-180');
+                        }
+                    });
+                    // Toggle the clicked accordion
+                    button.classList.toggle('active');
+                    button.querySelector('svg').classList.toggle('rotate-180');
+                }
+            });
+        }
+        
+        // --- Modal Logic ---
+        const modal = document.getElementById('stotram-modal');
+        const stotramLink = document.getElementById('stotram-link');
+        const closeButton = document.getElementById('close-modal-button');
+
+        stotramLink.onclick = (e) => {
+            e.preventDefault();
+            modal.style.display = "block";
+        }
+        closeButton.onclick = () => {
+            modal.style.display = "none";
+        }
+        window.onclick = (event) => {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+    });
+    </script>
+</body>
+</html>
